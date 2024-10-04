@@ -1,0 +1,48 @@
+@import url(../../assets/variables.css);
+
+
+
+body{
+    background-color: darkgrey;
+}
+
+.general-container{
+    display: grid;
+    grid-template-columns: 1.5fr 4px 3fr;
+}
+
+.container-mananger{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}           
+.menu-container{
+     background-color: var(--main-bg-color);
+     height: 40vh   ;
+     width: 70%;
+     border-radius: 30px;
+     border: 3px solid var(--font-color-ligh);
+     overflow: hidden;
+}
+.menu-option{
+    padding: 18px;
+    font-size: 1.5rem;
+    background-color: transparent;
+    border-bottom: 4px solid var(--font-color-ligh) ;
+    transition: .3s;
+    color: var(--font-color-ligh);
+    cursor: pointer;
+}
+
+.menu-option:hover{
+    background-color: var(--select-bg-color);
+}
+
+
+
+.line-separator{
+    height: 100%;
+    width: auto;
+    background-color: black;
+}
