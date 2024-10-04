@@ -1,0 +1,84 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+
+model User{
+  id Int @id @default(autoincrement())
+  name String
+  email String @unique
+  password String
+  isAdmin   Boolean  @default(false)
+  institutions Institution[] // Relacionamento 1:N com Institution
+  messages  Message[]
+}
+
+model Institution {
+  id                   Int      @id @default(autoincrement())
+  nome                 String
+  cnpj                 String
+  endereco             String
+  rua                  String
+  numero               String
+  complemento          String?
+  bairro               String
+  cidade               String
+  estado               String
+  cep                  String
+  telefone             String
+  email                String
+  website              String?
+  facebook             String?
+  instagram            String?
+  linkedin             String?
+  descricao            String?
+  areasAtuacao         String
+  publicoAlvo          String
+  projetos             String
+  nomeResponsavel      String
+  horarioFuncionamento String?
+  verified         Boolean  @default(false)
+  userId               Int
+  user                 User     @relation(fields: [userId], references: [id])
+   messages  Message[]
+     events      Event[]  
+
+}
+
+model Message {
+  id            Int      @id @default(autoincrement())
+  content       String
+  createdAt     DateTime @default(now())
+  userId        Int
+  institutionId Int
+
+  user          User      @relation(fields: [userId], references: [id])
+  institution   Institution @relation(fields: [institutionId], references: [id])
+}
+model Event {
+  id          Int       @id @default(autoincrement())
+  local       String
+  data        DateTime
+  hora        String
+  categoria   String
+  descricao   String
+  finalidade  String
+  hearts      Int       @default(0) // Contador de "corações"
+  
+  institution Institution @relation(fields: [institutionId], references: [id])
+  institutionId Int
+
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}

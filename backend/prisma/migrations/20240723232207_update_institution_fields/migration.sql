@@ -1,0 +1,28 @@
+-- CreateTable
+CREATE TABLE "Institution" (
+    "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "nome" TEXT NOT NULL DEFAULT '',
+    "cnpj" TEXT NOT NULL DEFAULT '',
+    "endereco" TEXT NOT NULL DEFAULT '',
+    "rua" TEXT NOT NULL DEFAULT '',
+    "numero" TEXT NOT NULL DEFAULT '',
+    "complemento" TEXT,
+    "bairro" TEXT NOT NULL DEFAULT '',
+    "cidade" TEXT NOT NULL DEFAULT '',
+    "estado" TEXT NOT NULL DEFAULT '',
+    "cep" TEXT NOT NULL DEFAULT '',
+    "telefone" TEXT NOT NULL DEFAULT '',
+    "email" TEXT NOT NULL DEFAULT '',
+    "website" TEXT,
+    "facebook" TEXT,
+    "instagram" TEXT,
+    "linkedin" TEXT,
+    "descricao" TEXT,
+    "areasAtuacao" TEXT NOT NULL DEFAULT '',
+    "publicoAlvo" TEXT NOT NULL DEFAULT '',
+    "projetos" TEXT NOT NULL DEFAULT '',
+    "nomeResponsavel" TEXT NOT NULL DEFAULT '',
+    "horarioFuncionamento" TEXT,
+    "userId" INTEGER NOT NULL,
+    CONSTRAINT "Institution_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User" ("id") ON DELETE RESTRICT ON UPDATE CASCADE
+);
