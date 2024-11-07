@@ -6,6 +6,7 @@
 
 generator client {
   provider = "prisma-client-js"
+  
 }
 
 datasource db {
@@ -22,6 +23,7 @@ model User{
   isAdmin   Boolean  @default(false)
   institutions Institution[] // Relacionamento 1:N com Institution
   messages  Message[]
+  foto String?
 }
 
 model Institution {
@@ -48,11 +50,16 @@ model Institution {
   projetos             String
   nomeResponsavel      String
   horarioFuncionamento String?
+
+  latitude             Float?  
+  longitude            Float?
+
   verified         Boolean  @default(false)
   userId               Int
   user                 User     @relation(fields: [userId], references: [id])
-   messages  Message[]
-     events      Event[]  
+  messages  Message[]
+  events      Event[]  
+  foto Foto[]
 
 }
 
@@ -81,4 +88,13 @@ model Event {
 
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
+}
+
+model Foto {
+  id             Int          @id @default(autoincrement())
+  url            String       
+  institutionId  Int
+  institution    Institution  @relation(fields: [institutionId], references: [id])
+
+  createdAt      DateTime     @default(now())
 }

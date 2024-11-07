@@ -1,9 +1,9 @@
 import { Component, useContext, useState } from "react";
 import { AuthContext } from "../../context/auth";
 import './styles.css'
-import { MenuLateral } from "./components/menuLateral";
-import { Component1 } from "./components/infoUser";
-import { Component2 } from "./components/teste";
+import { MenuLateral } from "./components/menu/menuLateral";
+import { Component1 } from "./components/infouser/infoUser";
+import { Component2 } from "./components/listInstitutions/ListInstitution";
 import { Link } from "react-router-dom";
 export const InfoUser = () => {
 

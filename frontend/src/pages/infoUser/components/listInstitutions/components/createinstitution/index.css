@@ -1,0 +1,21 @@
+.container-create-institution {
+    width: 95%;
+    background-color: rgb(219, 219, 219);
+    border-radius: 20px;
+    padding: 20px;
+    display: flex;
+    align-items: center; 
+    justify-content: space-between;
+ 
+}
+
+.container-create-institution p {
+    margin: 0; 
+    font-size: 20px;
+}
+
+.create-institution {
+    width: 15%;
+    margin-top: 0;
+    
+}

@@ -8,6 +8,8 @@ import { AuthMiddlewares } from './middleware/auth';
 import { InstitutionController } from './controller/InstitutionController';
 import { AdminMiddlewares } from './middleware/adminAuth'; 
 import { createEvent , addHeart , List} from './controller/EventController';
+import { upload } from '../prisma/upload';
+import { uploadUser } from '../prisma/uploadsUser';
 // import { MessageController } from './controller/MessageController';
 
 const usercontroller = new UserController();
@@ -22,14 +24,15 @@ router.post("/create", usercontroller.store);
 router.get("/users", usercontroller.index);
 router.get('/users/:id', usercontroller.show);
 router.delete("/delete", AuthMiddlewares, usercontroller.deleteAccount);
-router.patch("/update", AuthMiddlewares, usercontroller.update);
+router.patch("/update", AuthMiddlewares, uploadUser.single('foto'), usercontroller.update);
+
 
 // Rotas de autenticação
 router.post("/auth", authcontroller.authenticate);
 
 // Rotas de instituição
-router.post("/institution", AuthMiddlewares, institutionController.store);
-router.get("/institutions", AuthMiddlewares, institutionController.index);
+router.post("/institution",  AuthMiddlewares, upload.array('foto', 5), institutionController.store);
+router.get("/institutions" ,  AuthMiddlewares, institutionController.index);
 router.get("/institution/listall", institutionController.listAll);
 router.get("/institution/:id", institutionController.show);
 

@@ -49,23 +49,36 @@ export class UserController {
         const userId = Number(req.userId);  // Convertendo userId para número
     
         try {
-            const updates: any = {};  // Objeto para armazenar os campos a serem atualizados
+            const updates: any = {};  
     
+            // Adiciona os dados ao objeto de atualizações se estiverem presentes
             if (name) updates.name = name;
             if (email) updates.email = email;
             if (password) updates.password = await hash(password, 8);
     
+            // Verifica se uma nova foto foi enviada
+            if (req.file) {
+                updates.foto = req.file.filename; // Armazena apenas o nome do arquivo
+            }
+    
+            // Atualiza o usuário no banco de dados
             const updatedUser = await prisma.user.update({
-                where: { id: userId },  // Usando o ID convertido para número
+                where: { id: userId }, 
                 data: updates,
             });
     
+            // Cria a URL completa para a foto do usuário, se existir
+            if (updatedUser.foto) {
+                updatedUser.foto = `http://localhost:3333/uploads/users/${updatedUser.foto}`; // Ajuste para a URL correta
+            }
+            
+    
             return res.json({ user: updatedUser });
         } catch (error) {
+            console.error(error); // Adiciona log de erro
             return res.status(500).json({ error: "Failed to update user" });
         }
     }
-
     // Novo método para buscar um usuário específico e suas instituições
     async show(req: Request, res: Response) {
         const { id } = req.params;

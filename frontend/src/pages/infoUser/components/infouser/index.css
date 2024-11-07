@@ -1,0 +1,222 @@
+.infouser-general {
+    width: 90%;
+    background-color: white;
+    border-radius: 20px;
+
+}
+
+.forms-user-profile form {
+    display: grid;
+
+    grid-template-columns: 0.8fr 14px 3fr;
+    height: 300px;
+
+}
+
+.label-l,
+.input-r {
+    display: flex;
+    flex-direction: column;
+}
+
+.label-l {
+    align-items: end;
+
+    font-size: 18px;
+    justify-content: space-around;
+    color: rgb(89, 89, 89);
+}
+
+.input-r {
+    width: 60%;
+    grid-column: 3;
+    justify-content: space-around;
+
+}
+
+
+/* From Uiverse.io by shah1345 */
+.button2 {
+    width: 25%;
+    grid-column: 3;
+    margin-top: 20px;
+    height: 40px;
+    display: inline-block;
+    transition: all 0.2s ease-in;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    color: #090909;
+    padding: 0;
+    text-decoration: none;
+    cursor: pointer;
+    font-size: 18px;
+    border-radius: 0.5em;
+    background: #e8e8e8;
+    border: 1px solid #e8e8e8;
+    box-shadow: 6px 6px 12px #c5c5c5, -6px -6px 12px #ffffff;
+    line-height: 40px;
+    /* Defina o line-height igual à altura do botão */
+    text-align: center;
+    /* Centralize o texto */
+}
+
+.button2:active {
+    color: #666666;
+    box-shadow: inset 4px 4px 12px #c5c5c5, inset -4px -4px 12px #ffffff;
+}
+
+.button2:before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%) scaleY(1) scaleX(1.25);
+    top: 100%;
+    width: 140%;
+    height: 180%;
+    background-color: rgba(0, 0, 0, 0.05);
+    border-radius: 50%;
+    display: block;
+    transition: all 0.5s 0.1s cubic-bezier(0.55, 0, 0.1, 1);
+    z-index: -1;
+}
+
+.button2:after {
+    content: "";
+    position: absolute;
+    left: 55%;
+    transform: translateX(-50%) scaleY(1) scaleX(1.45);
+    top: 180%;
+    width: 160%;
+    height: 190%;
+    background-color: #009087;
+    border-radius: 50%;
+    display: block;
+    transition: all 0.5s 0.1s cubic-bezier(0.55, 0, 0.1, 1);
+    z-index: -1;
+}
+
+.button2:hover {
+    color: #ffffff;
+    border: 1px solid #009087;
+}
+
+.button2:hover:before {
+    top: -35%;
+    background-color: #009087;
+    transform: translateX(-50%) scaleY(1.3) scaleX(0.8);
+}
+
+.button2:hover:after {
+    top: -45%;
+    background-color: #009087;
+}
+
+.input-user-profile {
+    width: 100%;
+    height: 40px;
+    line-height: 28px;
+    padding: 0 1rem;
+    padding-left: 2.5rem;
+    border: 2px solid transparent;
+    border-radius: 8px;
+    outline: none;
+    background-color: #f3f3f4;
+    color: #0d0c22;
+    transition: 0.3s ease;
+}
+
+.input-user-profile::placeholder {
+    color: #9e9ea7;
+}
+
+.input-user-profile:focus,
+.input-user-profile:hover {
+    outline: none;
+    border-color: rgba(0, 48, 73, 0.4);
+    background-color: #fff;
+    box-shadow: 0 0 0 4px rgb(0 48 73 / 10%);
+}
+
+.btn-delete-user , .btn-logout-user {
+    width: 150px;
+    height: 50px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    background: #e62222; /* Vermelho */
+    border: none;
+    border-radius: 5px;
+    box-shadow: 1px 1px 3px rgba(0,0,0,0.15);
+    position: relative; /* Adicionado para o posicionamento do ícone */
+}
+.btn-logout-user{
+    background-color: #009087;
+}
+.btn-delete-user, .btn-delete-user span , .btn-logout-user, .btn-logout-user span {
+    transition: 200ms;
+}
+
+.btn-delete-user .text , .btn-logout-user .text{
+    transform: translateX(35px);
+    color: white;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+.btn-delete-user .icon , .btn-logout-user .icon {
+    position: absolute;
+    border-left: 1px solid #c41b1b;
+    transform: translateX(110px);
+    height: 40px;
+    width: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+ .btn-logout-user .icon{
+    border-left: 1px solid #00554f;
+ }
+
+.btn-delete-user svg, .btn-logout-user svg {
+    width: 15px;
+    fill: #eee;
+}
+
+.btn-delete-user:hover {
+    background: #ff3636;
+}
+.btn-logout-user:hover{
+    background-color: #039d93;
+}
+.btn-delete-user:hover .text , .btn-logout-user:hover .text{
+    color: transparent;
+}
+
+.btn-delete-user:hover .icon , .btn-logout-user:hover .icon {
+    width: 150px;
+    border-left: none;
+    transform: translateX(0);
+}
+
+.btn-delete-user:focus ,.btn-logout-user:focus{
+    outline: none;
+}
+
+.btn-delete-user:active .icon svg , .btn-logout-user:active .icon svg{
+    transform: scale(0.8);
+}
+.text-delete-account,  .text-logout-account {
+    height: 10%;
+    background-color: rgba(255, 147, 147, 0.527);
+    padding: 10px;
+    border-radius: 20px;
+    width: 80%;
+    color: #c41b1b;
+    font-weight: 600;
+}
+.text-logout-account{
+    background-color: #21f7e973;
+    color: rgb(17, 96, 110);
+    margin-bottom: 40px;
+}

@@ -1,5 +1,3 @@
-// src/context/InstitutionContext.jsx
-
 import React, { createContext, useState, useContext } from 'react';
 import { api } from '../services/api';
 import { AuthContext } from './auth';
@@ -23,33 +21,35 @@ export const InstitutionProvider = ({ children }) => {
     }
   };
 
-  const registerInstitution = async (institutionData) => {
-    try {
-      await api.post('/institution', institutionData, {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem('@Auth:token')}`,
-        },
-      });
-      alert('Instituição cadastrada com sucesso!');
-      fetchInstitutions(); // Atualiza a lista de instituições após o registro
-    } catch (error) {
-      console.error('Erro ao registrar instituição', error);
-      alert('Erro ao cadastrar instituição. Tente novamente.');
-    }
-  };
+    const registerInstitution = async (institutionData) => {
+      try {
+        await api.post('/institution', institutionData, {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem('@Auth:token')}`,
+          },
+        });
+    
+        alert('Instituição cadastrada com sucesso!');
+        fetchInstitutions(); 
+      } catch (error) {
+        console.error('Erro ao registrar instituição', error.response ? error.response.data : error);
+        alert('Erro ao cadastrar instituição. Tente novamente.');
+      }
+    };
+    
+  
 
   const fetchAllInstitutions = async () => {
     try {
-        const response = await api.get('/institution/listall');
-        setInstitutions(response.data.institutions);
+      const response = await api.get('/institution/listall');
+      setInstitutions(response.data.institutions);
     } catch (error) {
-        console.error('Erro ao buscar todas as instituições:', error);
+      console.error('Erro ao buscar todas as instituições:', error);
     }
-};
-  
+  };
 
   return (
-    <InstitutionContext.Provider value={{ institutions, fetchInstitutions, registerInstitution , fetchAllInstitutions}}>
+    <InstitutionContext.Provider value={{ institutions, fetchInstitutions, registerInstitution, fetchAllInstitutions }}>
       {children}
     </InstitutionContext.Provider>
   );

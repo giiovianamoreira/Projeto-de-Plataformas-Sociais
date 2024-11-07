@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { LayoutComponents } from "../../components/layoutComponents"
 import { Link } from "react-router-dom";
-
+import { useNavigate } from 'react-router-dom';
 import jpIMG from "../../assets/jp.svg";
 import { api } from "../../services/api";
 
@@ -9,6 +9,7 @@ import { api } from "../../services/api";
 
 
 export const Register = () => {
+    const navigate = useNavigate();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [name, setName] = useState("");
@@ -21,6 +22,7 @@ export const Register = () => {
             const data = { email, password, name}
             const response = await api.post("/create", data);
             console.log(response.data)
+            navigate('/login')
         }
     return (
         <LayoutComponents>

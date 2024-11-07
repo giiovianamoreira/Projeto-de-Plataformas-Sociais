@@ -56,19 +56,28 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
-  const updateUser = async (updates) => {
+  const updateUser = async (data) => {
     try {
-      const response = await api.patch("/update", updates);
+      // Envia o FormData para a rota de atualização
+      const response = await api.patch("/update", data, {
+        headers: {
+          'Content-Type': 'multipart/form-data', // Define o tipo de conteúdo para multipart/form-data
+        },
+      });
+  
+      // Verifica se a resposta contém um usuário atualizado
       if (response.data.user) {
-        setUser(response.data.user);  // Atualiza o usuário no estado
-        localStorage.setItem("@Auth:user", JSON.stringify(response.data.user));  // Atualiza no localStorage
+        setUser(response.data.user); // Atualiza o usuário no estado
+        localStorage.setItem("@Auth:user", JSON.stringify(response.data.user)); // Atualiza no localStorage
       } else {
         alert(response.data.error);
       }
+      alert("alterações salvas")
     } catch (error) {
-      console.log(error);
+      console.log("Erro ao atualizar usuário:", error);
     }
   };
+  
 
   return (
     <AuthContext.Provider
