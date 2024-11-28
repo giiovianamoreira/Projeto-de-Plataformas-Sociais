@@ -22,11 +22,11 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "dev": "ts-node-dev --respawn --transpile-only --files src/server.ts",
+     "dev": "ts-node-dev --respawn --transpile-only --files src/server.ts",
     "seed": "ts-node prisma/seed.ts"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": ""
+  "description":""
 }

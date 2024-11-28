@@ -1,0 +1,171 @@
+/* Estilos gerais da página */
+body {
+	background-color: #F6F3F0;  /* Cor de fundo suave */
+	font-family: Arial, sans-serif;
+	color: #6D6D6D;  /* Texto em cinza */
+	margin: 0;
+	padding: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+	min-height: 100vh;
+  }
+  
+  /* Estilos do formulário de login */
+  .login-form {
+	width: 100%;
+	max-width: 400px;
+	background-color: #fff;
+	padding: 30px;
+	border-radius: 8px;
+	box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+	text-align: center;
+  }
+  
+  .login-form-title {
+	font-size: 1.8em;
+	color: #646CFF;  /* Roxo */
+	margin-bottom: 20px;
+	font-weight: bold;
+  }
+  
+  /* Logo ou imagem do formulário */
+  .login-form-title img {
+	width: 100px;
+	margin-top: 10px;
+  }
+  
+  /* Estilos dos campos de input */
+  .wrap-input {
+	position: relative;
+	margin-bottom: 20px;
+  }
+  
+  .input {
+	width: 100%;
+	padding: 15px;
+	border: 2px solid #ccc;
+	border-radius: 4px;
+	font-size: 1em;
+	color: #333;
+	background-color: #f9f9f9;
+	transition: border 0.3s ease;
+  }
+  
+  .input:focus {
+	border-color: #FD8139;  /* Laranja */
+  }
+  
+  .has-val {
+	border-color: #646CFF;  /* Roxo */
+  }
+  
+  .focus-input {
+	position: absolute;
+	left: 20px;
+	top: 15px;
+	font-size: 1em;
+	color: #6D6D6D;
+	pointer-events: none;
+	transition: all 0.3s ease;
+  }
+  
+  .input:focus + .focus-input,
+  .has-val + .focus-input {
+	top: -10px;
+	font-size: 0.9em;
+	color: #FD8139;  /* Laranja */
+  }
+  
+  /* Botão de login */
+  .container-login-form-btn {
+	text-align: center;
+	margin-top: 20px;
+  }
+  
+  .login-form-btn {
+	width: 100%;
+	padding: 15px;
+	background-color: #FD8139;  /* Laranja */
+	color: white;
+	font-size: 1.1em;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+	transition: background-color 0.3s ease;
+  }
+  
+  .login-form-btn:hover {
+	background-color: #e56b27;  /* Laranja mais escuro */
+  }
+  
+  /* Link para página de registro */
+  .text-center {
+	margin-top: 20px;
+  }
+  
+  .txt1 {
+	color: #6D6D6D;  /* Cinza */
+  }
+  
+  .txt2 {
+	color: #646CFF;  /* Roxo */
+	text-decoration: none;
+	font-weight: bold;
+  }
+  
+  .txt2:hover {
+	text-decoration: underline;
+  }
+  
+  /* Responsividade */
+  
+  /* Para tablets e dispositivos de tela média (até 768px) */
+  @media (max-width: 768px) {
+	.login-form {
+	  width: 90%;  /* Formulário ocupa 90% da largura da tela */
+	  padding: 20px;
+	}
+  
+	.login-form-title {
+	  font-size: 1.5em;  /* Reduzir o tamanho do título */
+	}
+  
+	.input {
+	  font-size: 1em;  /* Ajustar tamanho dos campos de entrada */
+	}
+  
+	.login-form-btn {
+	  font-size: 1em;  /* Ajustar o tamanho da fonte do botão */
+	}
+  
+	.txt1, .txt2 {
+	  font-size: 0.9em;  /* Ajustar o tamanho do texto e link */
+	}
+  }
+  
+  /* Para smartphones e dispositivos de tela pequena (até 480px) */
+  @media (max-width: 480px) {
+	.login-form {
+	  width: 90%;  /* Formulário ocupa 90% da tela */
+	  padding: 15px;
+	}
+  
+	.login-form-title {
+	  font-size: 1.3em;  /* Reduzir o tamanho do título */
+	}
+  
+	.input {
+	  font-size: 0.95em;  /* Ajustar tamanho dos inputs */
+	}
+  
+	.login-form-btn {
+	  font-size: 0.95em;  /* Ajustar o tamanho do botão */
+	}
+  
+	.txt1, .txt2 {
+	  font-size: 0.85em;  /* Ajustar o tamanho do texto e link */
+	}
+  }
+  

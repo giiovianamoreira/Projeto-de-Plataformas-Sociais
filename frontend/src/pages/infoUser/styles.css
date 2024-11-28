@@ -1,62 +1,128 @@
-@import url(../../assets/variables.css);
-
-
-
-body{
-    background-color: var(--main-bg-color);
-}
-
-.general-container{
-    display: grid;
-    grid-template-columns: 1.5fr 4px 3fr;
-   position: absolute;
-   width: 100%;
-
-}
-
-.container-mananger{
+/* Estilos gerais para o layout */
+.general-container {
     display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;position: relative;
+    flex-direction: row;
+    height: 100vh;
+    background-color: #F6F3F0;  /* Cor de fundo suave */
+  }
   
-
-   
-}           
-.menu-container{
-     background-color: white;
-     height: 40vh   ;
-     width: 70%;
-     border-radius: 30px;
-     
-     overflow: hidden;
-     
-}
-.menu-option{
-    padding: 18px;
-    font-size: 1.5rem;
-    background-color: transparent;
-    border-bottom: 4px solid var(--font-color-ligh) ;
-    transition: .3s;
-    color: var(--font-color-ligh);
-    cursor: pointer;
-   
-}
-
-.menu-option:hover{
-    background-color: var(--select-bg-color);
-}
-
-.line-separator{
+  .container-manager {
+    flex: 1;
+    padding: 20px;
+  }
+  
+  .line-separator {
+    border-left: 1px solid #ddd;
+    margin: 0 20px;
+  }
+  
+  .navigation-links {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  /* Estilo do menu lateral */
+  .menu-lateral {
+    width: 250px;
+    background-color: #646CFF; /* Roxo */
+    color: #fff;
+    padding: 20px;
     height: 100%;
-    width: auto;
-    background-color: black;
-}
-
-.infouser-general{
-    padding: 15px;
-}
-
-.input-user-profile{
-    border-radius: 10px;
-}
+    position: fixed;
+  }
+  
+  .menu-lateral .menu-item {
+    margin: 15px 0;
+    cursor: pointer;
+    font-size: 1.2em;
+  }
+  
+  .menu-lateral .menu-item:hover,
+  .menu-lateral .menu-item.active {
+    background-color: #FD8139; /* Laranja */
+    border-radius: 5px;
+    padding: 10px;
+  }
+  
+  /* Estilos do conteúdo */
+  .container-manager {
+    flex-grow: 1;
+    margin-left: 270px; /* Espaço para o menu lateral */
+  }
+  
+  .container-manager > div {
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Links de navegação */
+  .txt2 {
+    color: #646CFF;
+    font-weight: bold;
+    text-decoration: none;
+  }
+  
+  .txt2:hover {
+    text-decoration: underline;
+  }
+  
+  .back-link {
+    color: #FD8139;
+    text-decoration: none;
+  }
+  
+  .back-link:hover {
+    text-decoration: underline;
+  }
+  
+  /* Responsividade */
+  
+  /* Tablets (até 768px) */
+  @media (max-width: 768px) {
+    .general-container {
+      flex-direction: column;
+    }
+  
+    .container-manager {
+      margin-left: 0;
+    }
+  
+    .menu-lateral {
+      width: 100%;
+      position: relative;
+      height: auto;
+    }
+  
+    .line-separator {
+      display: none;
+    }
+  
+    .navigation-links {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  
+    .txt2, .back-link {
+      font-size: 0.9em;
+    }
+  }
+  
+  /* Smartphones (até 480px) */
+  @media (max-width: 480px) {
+    .menu-lateral .menu-item {
+      font-size: 1em;
+    }
+  
+    .navigation-links {
+      margin-top: 10px;
+    }
+  
+    .txt2, .back-link {
+      font-size: 0.8em;
+    }
+  }
+  

@@ -25,3 +25,4 @@ export const AdminMiddlewares = async (req: Request, res: Response, next: NextFu
     return res.status(500).json({ error: "Erro interno do servidor" });
   }
 };
+  

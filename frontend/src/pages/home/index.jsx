@@ -1,9 +1,9 @@
-// src/pages/InstitutionList.jsx
-
 import React, { useEffect, useState } from 'react';
-import { useInstitution } from '../../context/institutionContext'; // Contexto de instituição
-import { InstitutionCard } from './components/card'; // Componente para exibir a instituição
-import { Link } from 'react-router-dom'; // Navegação
+import { useInstitution } from '../../context/institutionContext'; // Importa o contexto de instituições
+import { InstitutionCard } from './components/card'; // Componente responsável por exibir os cartões de instituições
+import { Link } from 'react-router-dom'; // Usado para navegação entre páginas
+import Navbar from './components/navebar'; // Barra de navegação personalizada
+import '../home/index.css'; // Arquivo CSS para estilos
 
 // Lista de estados brasileiros
 const estadosBrasileiros = [
@@ -12,26 +12,27 @@ const estadosBrasileiros = [
 ];
 
 export const Home = () => {
-  const { institutions, fetchAllInstitutions } = useInstitution(); // Hook do contexto
-  const [filteredInstitutions, setFilteredInstitutions] = useState([]); // Lista filtrada
-  const [selectedState, setSelectedState] = useState(""); // Estado selecionado
+  const { institutions = [], fetchAllInstitutions } = useInstitution(); // Hook do contexto que fornece as instituições e a função para buscá-las
+  const [filteredInstitutions, setFilteredInstitutions] = useState([]); // Estado para armazenar as instituições filtradas
+  const [selectedState, setSelectedState] = useState(""); // Estado para armazenar o estado selecionado no filtro
+  const [verMais, setVerMais] = useState(false); // Estado para controle de exibição de mais instituições
 
-  // Carregar instituições ao montar o componente
+  const numInstitutions = 10;
+
+  // Carregar todas as instituições ao montar o componente
   useEffect(() => {
-    fetchAllInstitutions(); // Buscar todas as instituições
+    fetchAllInstitutions(); // Busca todas as instituições verificadas do backend
   }, [fetchAllInstitutions]);
 
-  // Atualizar lista filtrada quando as instituições ou o estado selecionado mudarem
+  // Atualiza a lista de instituições filtradas quando o estado ou a lista de instituições mudam
   useEffect(() => {
-    const verifiedInstitutions = institutions.filter(inst => inst.verified); // Somente instituições verificadas
-   
-    
+    const verifiedInstitutions = institutions.filter(inst => inst.verified); // Filtra apenas as instituições verificadas
 
     if (selectedState === "") {
-      // Mostrar todas as instituições verificadas se nenhum estado for selecionado
+      // Se nenhum estado for selecionado, mostra todas as instituições verificadas
       setFilteredInstitutions(verifiedInstitutions);
     } else {
-      // Filtrar por estado
+      // Filtra as instituições verificadas de acordo com o estado selecionado
       setFilteredInstitutions(
         verifiedInstitutions.filter((inst) => inst.estado === selectedState)
       );
@@ -40,35 +41,76 @@ export const Home = () => {
 
   // Função para lidar com a mudança de estado selecionado
   const handleStateChange = (e) => {
-    setSelectedState(e.target.value);
+    setSelectedState(e.target.value); // Atualiza o estado selecionado
+  };
+
+  // Renderiza as instituições com base na condição de "Ver Mais"
+  const renderInstitutions = () => {
+    const institutionsToDisplay = verMais
+      ? filteredInstitutions
+      : filteredInstitutions.slice(0, numInstitutions);
+
+    return institutionsToDisplay.map((inst) => (
+      <InstitutionCard key={inst.id} institution={inst} />
+    ));
   };
 
   return (
     <div>
-      <Link to="/login">Login</Link>
-      <h1>Lista de Instituições</h1>
-
       <div>
-        <label>Filtrar por Estado: </label>
-        <select id="stateFilter" value={selectedState} onChange={handleStateChange}>
-          <option value="">Todos os Estados</option>
-          {estadosBrasileiros.map((estado) => (
-            <option key={estado} value={estado}>
-              {estado}
-            </option>
-          ))}
-        </select>
-      </div>
+        {/* Link para a página de login */}
+        <Link to="/login">Login</Link>
 
-      <div className="institution-cards">
-        {filteredInstitutions.length > 0 ? (
-          // Exibir cada instituição verificada
-          filteredInstitutions.map((inst) => (
-            <InstitutionCard key={inst.id} institution={inst} />
-          ))
-        ) : (
-          <p>Nenhuma instituição encontrada para o estado selecionado.</p>
-        )}
+        <div className='header'>
+        <img className="logo" src="logo.png"></img>
+<div className='titulo'>
+  <h1 >Plataforma de Projetos Sociais</h1>
+</div>
+
+
+{/* Botão para cadastrar como doador */}
+<div className="button-group">
+  <button
+    className="register-button doador-button"
+    onClick={() => (window.location.href = "login")}
+  >
+    Cadastrar como Doador
+  </button>
+</div>
+        </div>
+
+        {/* Filtro de estado */}
+        <div>
+          <label>Filtrar por Estado: </label>
+          <select
+            id="stateFilter"
+            value={selectedState}
+            onChange={handleStateChange}
+          >
+            <option value="">Todos os Estados</option>
+            {estadosBrasileiros.map((estado) => (
+              <option key={estado} value={estado}>
+                {estado}
+              </option>
+            ))}
+          </select>
+        </div>
+
+        {/* Exibe as instituições filtradas */}
+        <div className="institution-cards">
+          {filteredInstitutions.length > 0 ? (
+            renderInstitutions()
+          ) : (
+            <p>Nenhuma instituição encontrada para o estado selecionado.</p>
+          )}
+        </div>
+
+        {/* Botão para "Ver Mais" ou "Ver Menos" */}
+        <div className="button-group">
+          <button onClick={() => setVerMais(!verMais)}>
+            {verMais ? "Ver Menos" : "Ver Mais"}
+          </button>
+        </div>
       </div>
     </div>
   );

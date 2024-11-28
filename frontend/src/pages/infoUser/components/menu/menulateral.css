@@ -1,0 +1,43 @@
+/* Estilo geral do menu lateral */
+.menu-container {
+    display: flex;
+    flex-direction: column;
+    background-color: #646CFF; /* Roxo */
+    color: white;
+    padding: 20px;
+    height: 100%;
+    width: 250px;
+    position: fixed;
+    top: 0;
+    left: 0;
+  }
+  
+  /* Estilo das opções do menu */
+  .menu-option {
+    padding: 15px;
+    cursor: pointer;
+    font-size: 1.2em;
+    transition: background-color 0.3s ease;
+    border-radius: 5px;
+    margin-bottom: 10px;
+  }
+  
+  /* Estilo quando a opção é pressionada */
+  .menu-option:hover,
+  .menu-option.active {
+    background-color: #FD8139;  /* Laranja */
+  }
+  
+  /* Responsividade para dispositivos móveis */
+  @media (max-width: 768px) {
+    .menu-container {
+      width: 100%;  /* Faz o menu ocupar toda a largura da tela */
+      position: relative; /* Altera para "relative" para não ficar fixo na tela */
+    }
+  
+    .menu-option {
+      font-size: 1em; /* Reduz o tamanho da fonte em telas menores */
+      padding: 12px;  /* Menos espaço nas opções */
+    }
+  }
+  

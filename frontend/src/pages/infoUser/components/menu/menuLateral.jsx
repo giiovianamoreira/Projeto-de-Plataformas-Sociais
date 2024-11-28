@@ -1,16 +1,19 @@
-
-// Importe outros componentes...
-
+// Componente MenuLateral que recebe a função onSelect como prop
+import './menulateral.css';
 export const MenuLateral = ({ onSelect }) => {
     return (
-        <div className="menu-container">
-            <div className="menu-option" onClick={() => onSelect(1)}>Meu Perfil</div>
-            <div className="menu-option" onClick={() => onSelect(2)}>Minhas instituições</div>
-            <div className="menu-option" onClick={() => onSelect(3)}>Opção 3</div>
-            <div className="menu-option" onClick={() => onSelect(4)}>Opção 4</div>
-            <div className="menu-option" onClick={() => onSelect(5)}>Opção 5</div>
-            <div className="menu-option" onClick={() => onSelect(6)}>Opção 6</div>
+        <div className="menu-container"> {/* Contêiner principal do menu lateral */}
+            
+            {/* Opção do menu "Meu Perfil", ao ser clicada chama a função onSelect passando o valor 1 */}
+            <div className="menu-option" onClick={() => onSelect(1)}>
+                Meu Perfil
+            </div>
+            
+            {/* Opção do menu "Cadastrar instituições", ao ser clicada chama a função onSelect passando o valor 2 */}
+            <div className="menu-option" onClick={() => onSelect(2)}>
+                Cadastrar instituições
+            </div>
+
         </div>
     );
 }
-

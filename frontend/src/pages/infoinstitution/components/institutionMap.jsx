@@ -1,25 +1,27 @@
 import React, { useState } from 'react';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
-import 'leaflet/dist/leaflet.css';
+import 'leaflet/dist/leaflet.css';  // Importa o CSS do Leaflet
 
 const InstitutionMapModal = ({ institution }) => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);  // Estado para controlar a visibilidade do modal
 
   const handleOpenModal = () => {
-    setIsOpen(true);
+    setIsOpen(true);  // Abre o modal
   };
 
   const handleCloseModal = () => {
-    setIsOpen(false);
+    setIsOpen(false);  // Fecha o modal
   };
 
   return (
     <div>
+      {/* Botão para abrir o modal */}
       <button onClick={handleOpenModal}>Ver Localização no Mapa</button>
 
       {isOpen && (
         <div className="modal">
           <div className="modal-content">
+            {/* Botão de fechamento do modal */}
             <span className="close" onClick={handleCloseModal}>&times;</span>
 
             {/* Mapa */}
@@ -33,6 +35,7 @@ const InstitutionMapModal = ({ institution }) => {
                 attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
               />
               <Marker position={[institution.latitude, institution.longitude]}>
+                {/* Popup exibindo o nome da instituição */}
                 <Popup>{institution.nome}</Popup>
               </Marker>
             </MapContainer>

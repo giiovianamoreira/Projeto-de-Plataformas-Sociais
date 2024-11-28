@@ -4,11 +4,10 @@ import { api } from '../../services/api';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'; // Importa os componentes do Leaflet
-import 'leaflet/dist/leaflet.css'; // Estilos do Leaflet
-import L from 'leaflet'; // Importa Leaflet para manipulação de ícones
+import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
+import 'leaflet/dist/leaflet.css';
+import L from 'leaflet';
 
-// Necessário para corrigir o ícone padrão do Leaflet
 delete L.Icon.Default.prototype._getIconUrl;
 L.Icon.Default.mergeOptions({
   iconRetinaUrl: require('leaflet/dist/images/marker-icon-2x.png'),
@@ -20,18 +19,21 @@ export const InfoInstitution = () => {
   const [institution, setInstitution] = useState(null);
   const [events, setEvents] = useState([]);
   const institutionId = localStorage.getItem('institutionId');
-  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchInstitution = async () => {
       try {
         const response = await api.get(`/institution/${institutionId}`);
         setInstitution(response.data);
-        // Você pode também buscar eventos da instituição aqui, se necessário
+        
+        // Buscar eventos da instituição
+        const eventsResponse = await api.get(`/events?institutionId=${institutionId}`);
+        setEvents(eventsResponse.data);
       } catch (error) {
         console.error('Erro ao buscar a instituição:', error);
       }
     };
+
     fetchInstitution();
   }, [institutionId]);
 
@@ -44,7 +46,6 @@ export const InfoInstitution = () => {
     window.open('/userInfo', '_blank');
   };
 
-  // Configurações do carrossel
   const settings = {
     dots: true,
     infinite: true,
@@ -63,7 +64,6 @@ export const InfoInstitution = () => {
 
       <button onClick={handleOpenUserPage}>Ver informações do usuário</button>
 
-      {/* Exibir fotos da instituição com o carrossel */}
       <h2>Fotos da Instituição</h2>
       {institution.foto.length > 0 ? (
         <Slider {...settings}>
@@ -81,7 +81,6 @@ export const InfoInstitution = () => {
         <p>Nenhuma foto disponível.</p>
       )}
 
-      {/* Listar eventos da instituição */}
       <h2>Eventos</h2>
       {events.length > 0 ? (
         <ul>
@@ -99,7 +98,6 @@ export const InfoInstitution = () => {
       ) : (
         <p>Nenhum evento encontrado.</p>
       )}
-
 
       <h2>Localização</h2>
       <MapContainer center={[institution.latitude, institution.longitude]} zoom={15} style={{ height: '400px', width: '50%' }}>
